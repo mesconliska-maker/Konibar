@@ -104,41 +104,50 @@ const galleryImages = [
   return (
     <div className="bg-[#FAF8F5]">
       {/* HERO SECTION */}
-<section className="relative min-h-screen flex items-center justify-center text-white">
+{/* Hero Section */}
+<section className="relative h-[600px] md:h-[700px] overflow-hidden">
+  <div className="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1768051297578-1ea70392c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwcmVzdGF1cmFudCUyMGludGVyaW9yJTIwd2FybSUyMGxpZ2h0aW5nfGVufDF8fHx8MTc3MjA3MzY3NXww&ixlib=rb-4.1.0&q=80&w=1080"
+      alt="Restaurace Konibar"
+      className="w-full h-full object-cover"
+    />
 
-  <img
-    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
-    className="absolute inset-0 w-full h-full object-cover"
-  />
-
-  <div className="absolute inset-0 bg-black/60"></div>
-
-  <div className="relative text-center px-6 max-w-3xl">
-    <h1 className="text-5xl md:text-7xl font-serif mb-6">
-      Restaurace Konibar
-    </h1>
-
-    <p className="text-xl md:text-2xl mb-8">
-      Tradiční česká kuchyně v srdci Boru u Tachova
-    </p>
-
-    <div className="flex gap-4 justify-center flex-wrap">
-      <Link
-        to="/jidelnilistek"
-        className="bg-[#B8860B] px-8 py-4 rounded-md hover:bg-[#9A7109] transition"
-      >
-        Zobrazit menu
-      </Link>
-
-      <Link
-        to="/rezervace"
-        className="border border-white px-8 py-4 rounded-md hover:bg-white hover:text-black transition"
-      >
-        Rezervace
-      </Link>
-    </div>
+    <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
   </div>
 
+  <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="max-w-2xl text-white"
+    >
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif mb-6">
+        Restaurace <span className="text-[#B8860B]">Konibar</span>
+      </h1>
+
+      <p className="text-xl md:text-2xl mb-8 text-gray-200">
+        Tradiční česká kuchyně s moderním pojetím v srdci Boru u Tachova
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Link
+          to="/tydeni-menu"
+          className="bg-[#B8860B] text-white px-8 py-4 rounded-md hover:bg-[#9A7109] transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+        >
+          Týdenní menu
+        </Link>
+
+        <Link
+          to="/rezervace"
+          className="border border-white px-8 py-4 rounded-md hover:bg-white hover:text-black transition"
+        >
+          Rezervace
+        </Link>
+      </div>
+    </motion.div>
+  </div>
 </section>
 
       {/* TODAY MENU */}
