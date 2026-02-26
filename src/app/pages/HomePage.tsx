@@ -103,6 +103,43 @@ const galleryImages = [
 
   return (
     <div className="bg-[#FAF8F5]">
+      {/* HERO SECTION */}
+<section className="relative min-h-screen flex items-center justify-center text-white">
+
+  <img
+    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <div className="absolute inset-0 bg-black/60"></div>
+
+  <div className="relative text-center px-6 max-w-3xl">
+    <h1 className="text-5xl md:text-7xl font-serif mb-6">
+      Restaurace Konibar
+    </h1>
+
+    <p className="text-xl md:text-2xl mb-8">
+      Tradiční česká kuchyně v srdci Boru u Tachova
+    </p>
+
+    <div className="flex gap-4 justify-center flex-wrap">
+      <Link
+        to="/jidelnilistek"
+        className="bg-[#B8860B] px-8 py-4 rounded-md hover:bg-[#9A7109] transition"
+      >
+        Zobrazit menu
+      </Link>
+
+      <Link
+        to="/rezervace"
+        className="border border-white px-8 py-4 rounded-md hover:bg-white hover:text-black transition"
+      >
+        Rezervace
+      </Link>
+    </div>
+  </div>
+
+</section>
 
       {/* TODAY MENU */}
       <section className="py-16 bg-white">
