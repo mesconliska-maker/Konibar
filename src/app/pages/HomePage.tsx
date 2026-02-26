@@ -1,18 +1,24 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
-import { 
-  UtensilsCrossed, 
-  ShoppingBag, 
-  Truck, 
+import { useEffect, useState } from "react";
+type MenuItem = {
+  type: string;
+  name: string;
+  price: string;
+};
+import {
+  UtensilsCrossed,
+  ShoppingBag,
+  Truck,
   Star,
   ArrowRight,
   Clock,
   Phone,
   MapPin
 } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function HomePage() {
+
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -20,69 +26,124 @@ export function HomePage() {
     transition: { duration: 0.6 }
   };
 
-  const todaysMenu = [
-    { type: "Polévka", name: "Hovězí vývar s nudlemi", price: "45 Kč" },
-    { type: "Menu 1", name: "Vepřová pečeně, knedlík, zelí", price: "145 Kč" },
-    { type: "Menu 2", name: "Kuřecí řízek, bramborová kaše", price: "135 Kč" },
-  ];
+  /* ✅ AUTOMATICKÉ MENU */
 
+  const [todaysMenu, setTodaysMenu] = useState<MenuItem[]>([]);
+  const [todayLabel, setTodayLabel] = useState("");
   const reviews = [
-    { name: "Jana Nováková", rating: 5, text: "Vynikající jídlo a milá obsluha. Denní menu vždy čerstvé a chutné!" },
-    { name: "Petr Svoboda", rating: 4, text: "Skvělá restaurace s rodinnou atmosférou. Doporučuji steaky!" },
-    { name: "Marie Dvořáková", rating: 4, text: "Pravidelně si objednáváme rozvoz, vždy spokojenost." },
-  ];
+  { name: "Jana Nováková", rating: 5, text: "Vynikající jídlo a milá obsluha." },
+  { name: "Petr Svoboda", rating: 4, text: "Skvělá restaurace." },
+  { name: "Marie Dvořáková", rating: 4, text: "Pravidelně objednáváme." },
+];
 
-  const galleryImages = [
-    "https://images.unsplash.com/photo-1761095596755-99ba58997720?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnb3VybWV0JTIwZm9vZCUyMHBsYXRpbmclMjBwcmVzZW50YXRpb258ZW58MXx8fHwxNzcyMTE2MzYxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-    "https://images.unsplash.com/photo-1678684279246-96e6afb970f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmlsbGVkJTIwc3RlYWslMjBkaW5uZXIlMjBwbGF0ZXxlbnwxfHx8fDE3NzIwNjcwMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    "https://images.unsplash.com/photo-1754799565126-fe1ad148db85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMHBpenphJTIwaXRhbGlhbiUyMGN1aXNpbmV8ZW58MXx8fHwxNzcyMTE2MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-    "https://images.unsplash.com/photo-1761315413256-e149b40f577b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXJnZXIlMjBnb3VybWV0JTIwZm9vZCUyMHBob3RvZ3JhcGh5fGVufDF8fHx8MTc3MjEwOTE5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-  ];
+const galleryImages = [
+  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5",
+  "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+  "https://images.unsplash.com/photo-1498654896293-37aacf113fd9",
+  "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+];
+
+  useEffect(() => {
+
+  async function loadMenu() {
+
+    const url =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRHDAe_aQ0-REXRoXqjvW89z1geWJFK_M40BBvPe2u68tmWDcUBkcu7jb3lTwrmMXxKHtkEiKCSOeI7/pub?output=csv";
+
+    const res = await fetch(url);
+    const text = await res.text();
+
+    const rows = text.split("\n").slice(1);
+
+    let data: Record<number, MenuItem[]> = {};
+
+    rows.forEach((row) => {
+      if (!row.trim()) return;
+
+      const [day, soup, m1, p1, m2, p2] = row.split(",");
+      const dayNumber = Number(day);
+
+      data[dayNumber] = [
+        { type: "Polévka", name: soup, price: "" },
+        { type: "Menu 1", name: m1, price: `${p1} Kč` },
+        { type: "Menu 2", name: m2, price: `${p2} Kč` },
+      ];
+    });
+
+    const days = [
+      "Neděle",
+      "Pondělí",
+      "Úterý",
+      "Středa",
+      "Čtvrtek",
+      "Pátek",
+      "Sobota",
+    ];
+
+    let today = new Date().getDay();
+    setTodayLabel(days[today]);
+
+    if (today === 0) today = 7;
+
+    setTodaysMenu(data[today] || []);
+  }
+
+  // ✅ první načtení
+  loadMenu();
+
+  // ✅ AUTO REFRESH každých 5 minut
+  const interval = setInterval(loadMenu, 300000);
+
+  // ✅ cleanup
+  return () => clearInterval(interval);
+
+}, []);
+
+  /* ================= */
 
   return (
     <div className="bg-[#FAF8F5]">
-      {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[700px] overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1768051297578-1ea70392c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwcmVzdGF1cmFudCUyMGludGVyaW9yJTIwd2FybSUyMGxpZ2h0aW5nfGVufDF8fHx8MTc3MjA3MzY3NXww&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Restaurace Konibar"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+
+      {/* TODAY MENU */}
+      <section className="py-16 bg-white">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-serif">
+            Dnešní menu
+          </h2>
+
+          <p className="text-[#6B6254] text-lg">
+          Dnes je {todayLabel}
+          </p>
         </div>
-        
-        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl text-white"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif mb-6">
-              Restaurace <span className="text-[#B8860B]">Konibar</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200">
-              Tradiční česká kuchyně s moderním pojetím v srdci Boru u Tachova
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/tydeni-menu"
-                className="bg-[#B8860B] text-white px-8 py-4 rounded-md hover:bg-[#9A7109] transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
-              >
-                Týdenní menu
-                <ArrowRight size={20} />
-              </Link>
-              <Link
-                to="/rezervace"
-                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-md hover:bg-white/20 transition-all inline-flex items-center justify-center gap-2"
-              >
-                Rezervace stolu
-              </Link>
-            </div>
-          </motion.div>
+
+        <div className="max-w-3xl mx-auto">
+
+          {todaysMenu.length === 0 && (
+            <p className="text-center">Načítám menu...</p>
+          )}
+
+          {todaysMenu.map((item, index) => (
+            <motion.div
+              key={index}
+              {...fadeInUp}
+              className="flex justify-between py-6 border-b"
+            >
+              <div>
+                <span className="text-sm text-[#B8860B] uppercase">
+                  {item.type}
+                </span>
+                <h3 className="text-xl">
+                  {item.name}
+                </h3>
+              </div>
+
+              <div className="text-2xl text-[#B8860B]">
+                {item.price}
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
+        </section>   {/* ✅ TOTO DOPLŇ */}
 
       {/* About Section */}
       <section className="py-16 md:py-24">
@@ -104,46 +165,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Today's Menu */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeInUp} className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-serif text-[#2C2416] mb-4">
-              Dnešní menu
-            </h2>
-            <p className="text-lg text-[#6B6254]">Čtvrtek 26. února 2026</p>
-          </motion.div>
-
-          <div className="max-w-3xl mx-auto">
-            {todaysMenu.map((item, index) => (
-              <motion.div
-                key={index}
-                {...fadeInUp}
-                transition={{ delay: index * 0.1 }}
-                className="flex justify-between items-center py-6 border-b border-[#E8E3D8] last:border-0"
-              >
-                <div>
-                  <span className="text-sm text-[#B8860B] uppercase tracking-wide">{item.type}</span>
-                  <h3 className="text-xl text-[#2C2416] mt-1">{item.name}</h3>
-                </div>
-                <div className="text-2xl text-[#B8860B] font-serif ml-4">
-                  {item.price}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div {...fadeInUp} className="text-center mt-12">
-            <Link
-              to="/tydeni-menu"
-              className="inline-flex items-center gap-2 text-[#B8860B] hover:text-[#9A7109] transition-colors"
-            >
-              Zobrazit celé týdenní menu
-              <ArrowRight size={20} />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Services */}
       <section className="py-16 md:py-20 bg-[#F5F1E8]">
