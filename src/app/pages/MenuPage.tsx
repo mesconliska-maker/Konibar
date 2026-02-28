@@ -86,7 +86,7 @@ export function MenuPage() {
       { name: "Ingredience navíc", description: "", price: "od 10 Kč" },
     ],
     testoviny: [
-      { name: "Špagety „Aglio Olio" sypané parmezánem", description: "Špagety, olivový olej, chilli papričky, česnek, parmazán | 300 g", price: "149 Kč" },
+      { name: "Špagety 'Aglio Olio' sypané parmezánem", description: "Špagety, olivový olej, chilli papričky, česnek, parmazán | 300 g", price: "149 Kč" },
       { name: "Tagliatelle pancetta e funghi", description: "Tagliatelle, slanina, žampiony, česnek, pesto | 300 g", price: "179 Kč" },
       { name: "Gnocchi s listovým špenátem, smetanou a restovaným kuřecím masem", description: "300 g", price: "189 Kč" },
       { name: "Špagety Carbonara", description: "Slanina, parmazán, vejce | 300 g", price: "179 Kč" },
