@@ -22,7 +22,7 @@ export function MenuPage() {
     { id: "moucniky", name: "Moučníky" },
   ];
 
-  const menuItems: Record<string, { name: string; description: string; price: string }[]> = {
+  const menuItems = {
     predkrmy: [
       { name: "Ďábelské topinky sypané sýrem", description: "Topinky, masová pikantní směs, sýr | 4 ks", price: "105 Kč" },
       { name: "Gyoza se sójovou omáčkou ★ SPECIAL", description: "Smažené japonské knedlíčky plněné masem | 150 g", price: "115 Kč" },
