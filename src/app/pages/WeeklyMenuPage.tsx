@@ -57,6 +57,16 @@ export function WeeklyMenuPage() {
         { name: "Rizoto s mořskými plody", price: "165 Kč" },
       ],
     },
+    {
+      day: "Sobota",
+      date: "27.2.",
+      soup: { name: "Polévka dle denní nabídky", price: "45 Kč" },
+      meals: [
+        { name: "Menu 1 dle denní nabídky", price: "—" },
+        { name: "Menu 2 dle denní nabídky", price: "—" },
+        { name: "Menu 3 dle denní nabídky", price: "—" },
+      ],
+    },
   ];
 
   const fadeInUp = {
@@ -82,7 +92,7 @@ export function WeeklyMenuPage() {
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-[#4A4238]">
             <Calendar size={20} />
-            <span>Týden 22. - 26. února 2026</span>
+            <span>Týden 22. - 27. února 2026</span>
           </div>
         </motion.div>
 
@@ -166,7 +176,7 @@ export function WeeklyMenuPage() {
 
         {/* Desktop Menu Display */}
         <div className="hidden lg:block">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
             {weeklyMenu.map((menu, index) => (
               <motion.div
                 key={index}
@@ -255,10 +265,10 @@ export function WeeklyMenuPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+420374790133"
+              href="tel:+420775941501"
               className="bg-[#B8860B] text-white px-8 py-3 rounded-md hover:bg-[#9A7109] transition-colors"
             >
-              Zavolejte nám: +420 374 790 133
+              Zavolejte nám: +420 775 941 501
             </a>
           </div>
         </motion.div>
