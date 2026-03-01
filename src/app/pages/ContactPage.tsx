@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Facebook } from "lucide-react";
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -92,7 +92,7 @@ export function ContactPage() {
                       +420 374 790 133
                     </a>
                     <p className="text-[#6B6254] text-sm mt-1">
-                      Pro rezervace
+                      Pro rezervace i rozvoz
                     </p>
                   </div>
                 </div>
@@ -141,20 +141,12 @@ export function ContactPage() {
                 <h3 className="text-xl text-[#2C2416] mb-4">Sledujte nás</h3>
                 <div className="flex gap-3">
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/restauracekonibar?locale=cs_CZ"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-[#B8860B] text-white p-3 rounded-full hover:bg-[#9A7109] transition-colors"
                   >
                     <Facebook size={24} />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#B8860B] text-white p-3 rounded-full hover:bg-[#9A7109] transition-colors"
-                  >
-                    <Instagram size={24} />
                   </a>
                 </div>
               </div>
