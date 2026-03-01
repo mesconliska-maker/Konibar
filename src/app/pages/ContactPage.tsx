@@ -92,7 +92,7 @@ export function ContactPage() {
                       +420 374 790 133
                     </a>
                     <p className="text-[#6B6254] text-sm mt-1">
-                      Pro rezervace i rozvoz
+                      Pro rezervace
                     </p>
                   </div>
                 </div>
