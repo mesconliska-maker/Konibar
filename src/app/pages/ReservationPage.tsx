@@ -279,11 +279,11 @@ export function ReservationPage() {
                 Můžete nás také kontaktovat telefonicky
               </p>
               <a
-                href="tel:+420374790133"
+                href="tel:+420775941501"
                 className="flex items-center gap-3 bg-[#2C2416] text-white px-4 py-3 rounded-md hover:bg-[#1A1510] transition-colors"
               >
                 <Phone size={20} />
-                <span>+420 374 790 133</span>
+                <span>+420 775 941 501</span>
               </a>
             </div>
 
