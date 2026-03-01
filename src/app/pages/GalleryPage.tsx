@@ -52,7 +52,8 @@ export function GalleryPage() {
               <img
                 src={image.url}
                 alt={image.alt}
-                className="w-full h-auto block group-hover:scale-110 transition-transform duration-500"
+                className="w-full block group-hover:scale-110 transition-transform duration-500"
+                style={{ maxHeight: "300px", objectFit: "cover" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-4">
