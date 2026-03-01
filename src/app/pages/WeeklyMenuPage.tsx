@@ -52,9 +52,28 @@ export function WeeklyMenuPage() {
         // dayNumber z Sheets: 1=Po, 2=Út, 3=St, 4=Čt, 5=Pá, 6=So, 7=Ne
         const data: Record<number, { soup: string; m1: string; p1: string; m2: string; p2: string }> = {};
 
+        function parseCSVRow(row: string): string[] {
+          const result: string[] = [];
+          let current = "";
+          let inQuotes = false;
+          for (let i = 0; i < row.length; i++) {
+            const char = row[i];
+            if (char === '"') {
+              inQuotes = !inQuotes;
+            } else if (char === "," && !inQuotes) {
+              result.push(current.trim());
+              current = "";
+            } else {
+              current += char;
+            }
+          }
+          result.push(current.trim());
+          return result;
+        }
+
         rows.forEach((row) => {
           if (!row.trim()) return;
-          const [day, soup, m1, p1, m2, p2] = row.split(",");
+          const [day, soup, m1, p1, m2, p2] = parseCSVRow(row);
           const d = Number(day);
           if (d >= 1 && d <= 6) {
             data[d] = { soup: soup?.trim(), m1: m1?.trim(), p1: p1?.trim(), m2: m2?.trim(), p2: p2?.trim() };
