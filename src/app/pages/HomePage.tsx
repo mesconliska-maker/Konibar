@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {
   UtensilsCrossed,
   ShoppingBag,
-  Truck,
+  CalendarDays,
   Star,
   ArrowRight,
   Clock,
