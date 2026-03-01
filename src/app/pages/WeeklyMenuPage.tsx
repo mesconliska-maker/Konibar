@@ -271,7 +271,7 @@ export function WeeklyMenuPage() {
         {/* CTA */}
         <motion.div {...fadeInUp} className="mt-12 text-center">
           <p className="text-lg text-[#4A4238] mb-6">
-            Máte zájem o rezervaci nebo rozvoz?
+            Máte zájem o rezervaci?
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
