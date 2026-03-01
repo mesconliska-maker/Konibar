@@ -58,10 +58,29 @@ const galleryImages = [
 
     let data: Record<number, MenuItem[]> = {};
 
+    function parseCSVRow(row: string): string[] {
+      const result: string[] = [];
+      let current = "";
+      let inQuotes = false;
+      for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === "," && !inQuotes) {
+          result.push(current.trim());
+          current = "";
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      return result;
+    }
+
     rows.forEach((row) => {
       if (!row.trim()) return;
 
-      const [day, soup, m1, p1, m2, p2] = row.split(",");
+      const [day, soup, m1, p1, m2, p2] = parseCSVRow(row);
       const dayNumber = Number(day);
 
       data[dayNumber] = [
