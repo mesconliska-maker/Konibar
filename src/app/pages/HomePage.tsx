@@ -1,21 +1,22 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
-type MenuItem = {
-  type: string;
-  name: string;
-  price: string;
-};
 import {
   UtensilsCrossed,
   ShoppingBag,
-  Truck,
+  CalendarDays,
   Star,
   ArrowRight,
   Clock,
   Phone,
   MapPin
 } from "lucide-react";
+
+type MenuItem = {
+  type: string;
+  name: string;
+  price: string;
+};
 
 export function HomePage() {
 
