@@ -254,11 +254,11 @@ const galleryImages = [
               className="bg-white p-8 rounded-lg text-center hover:shadow-lg transition-shadow"
             >
               <div className="w-16 h-16 bg-[#B8860B]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Truck size={32} className="text-[#B8860B]" />
+                <CalendarDays size={32} className="text-[#B8860B]" />
               </div>
-              <h3 className="text-2xl text-[#2C2416] mb-3">Rozvoz</h3>
+              <h3 className="text-2xl text-[#2C2416] mb-3">Rezervace</h3>
               <p className="text-[#6B6254]">
-                Dovezeme vám jídlo až domů nebo do práce
+                Rezervujte si stůl online nebo telefonicky
               </p>
             </motion.div>
           </div>
