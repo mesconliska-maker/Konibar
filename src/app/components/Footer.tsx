@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook } from "lucide-react";
 
 export function Footer() {
   return (
@@ -87,20 +87,12 @@ export function Footer() {
             </ul>
             <div className="flex gap-3 mt-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/restauracekonibar?locale=cs_CZ"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#3E3228] p-2 rounded-full hover:bg-[#B8860B] transition-colors"
               >
                 <Facebook size={18} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#3E3228] p-2 rounded-full hover:bg-[#B8860B] transition-colors"
-              >
-                <Instagram size={18} />
               </a>
             </div>
           </div>
