@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {
   UtensilsCrossed,
   ShoppingBag,
-  CalendarDays,
+  Truck,
   Star,
   ArrowRight,
   Clock,
@@ -38,10 +38,10 @@ export function HomePage() {
 ];
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5",
-  "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
-  "https://images.unsplash.com/photo-1498654896293-37aacf113fd9",
-  "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+  "/obrazek1hl.jpeg",
+  "/obrazek2hl.jpeg",
+  "/obrazek3hl.jpeg",
+  "/obrazek4hl.jpeg",
 ];
 
   useEffect(() => {
@@ -202,7 +202,7 @@ const galleryImages = [
             <p className="text-lg text-[#4A4238] leading-relaxed mb-4">
               Jsme rodinná restaurace s tradicí, která se nachází v centru města Bor u Tachova. 
               Nabízíme každý den čerstvě připravené menu, široký výběr jídel z našeho stálého 
-              jídelního lístku.
+              jídelního lístku a také možnost rozvozu jídel.
             </p>
             <p className="text-lg text-[#4A4238] leading-relaxed">
               Naše kuchyně kombinuje tradiční české recepty s moderními technologiemi přípravy, 
@@ -363,11 +363,11 @@ const galleryImages = [
                 <ArrowRight size={20} />
               </Link>
               <a
-                href="tel:+420775941501"
+                href="tel:+420374790133"
                 className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-md hover:bg-white/20 transition-all inline-flex items-center gap-2"
               >
                 <Phone size={20} />
-                +420 775 941 501
+                +420 374 790 133
               </a>
             </div>
           </motion.div>
@@ -417,8 +417,8 @@ const galleryImages = [
                   </div>
                   <div>
                     <h3 className="text-xl text-[#2C2416] mb-1">Telefon</h3>
-                    <a href="tel:+420775941501" className="text-[#B8860B] hover:text-[#9A7109]">
-                      +420 775 941 501
+                    <a href="tel:+420374790133" className="text-[#B8860B] hover:text-[#9A7109]">
+                      +420 374 790 133
                     </a>
                   </div>
                 </div>
