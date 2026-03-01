@@ -50,7 +50,7 @@ export function WeeklyMenuPage() {
         const rows = text.split("\n").slice(1);
 
         // dayNumber z Sheets: 1=Po, 2=Út, 3=St, 4=Čt, 5=Pá, 6=So, 7=Ne
-        const data: Record<number, { soup: string; m1: string; p1: string; m2: string; p2: string }> = {};
+        const data: Record<number, { soup: string; m1: string; p1: string; m2: string; p2: string; m3: string; p3: string }> = {};
 
         function parseCSVRow(row: string): string[] {
           const result: string[] = [];
@@ -73,22 +73,30 @@ export function WeeklyMenuPage() {
 
         rows.forEach((row) => {
           if (!row.trim()) return;
-          const [day, soup, m1, p1, m2, p2] = parseCSVRow(row);
+          const [day, soup, m1, p1, m2, p2, m3, p3] = parseCSVRow(row);
           const d = Number(day);
           if (d >= 1 && d <= 6) {
-            data[d] = { soup: soup?.trim(), m1: m1?.trim(), p1: p1?.trim(), m2: m2?.trim(), p2: p2?.trim() };
+            data[d] = { soup: soup?.trim(), m1: m1?.trim(), p1: p1?.trim(), m2: m2?.trim(), p2: p2?.trim(), m3: m3?.trim() || "", p3: p3?.trim() || "" };
           }
         });
 
         const todayNum = todayJs === 0 ? 7 : todayJs; // 1=Po...7=Ne
 
+        function buildMeals(d: typeof data[number] | undefined, includeM3: boolean) {
+          const meals = [];
+          if (d?.m1) meals.push({ name: d.m1, price: d.p1 ? `${d.p1} Kč` : "" });
+          if (d?.m2) meals.push({ name: d.m2, price: d.p2 ? `${d.p2} Kč` : "" });
+          if (includeM3 && d?.m3) meals.push({ name: d.m3, price: d.p3 ? `${d.p3} Kč` : "" });
+          return meals;
+        }
+
         setWeeklyMenu([
-          { day: "Pondělí",  date: getDateForDay(1), isToday: todayNum === 1, soup: { name: data[1]?.soup || "—", price: "" }, meals: [ { name: data[1]?.m1 || "—", price: data[1]?.p1 ? `${data[1].p1} Kč` : "" }, { name: data[1]?.m2 || "—", price: data[1]?.p2 ? `${data[1].p2} Kč` : "" } ] },
-          { day: "Úterý",   date: getDateForDay(2), isToday: todayNum === 2, soup: { name: data[2]?.soup || "—", price: "" }, meals: [ { name: data[2]?.m1 || "—", price: data[2]?.p1 ? `${data[2].p1} Kč` : "" }, { name: data[2]?.m2 || "—", price: data[2]?.p2 ? `${data[2].p2} Kč` : "" } ] },
-          { day: "Středa",  date: getDateForDay(3), isToday: todayNum === 3, soup: { name: data[3]?.soup || "—", price: "" }, meals: [ { name: data[3]?.m1 || "—", price: data[3]?.p1 ? `${data[3].p1} Kč` : "" }, { name: data[3]?.m2 || "—", price: data[3]?.p2 ? `${data[3].p2} Kč` : "" } ] },
-          { day: "Čtvrtek", date: getDateForDay(4), isToday: todayNum === 4, soup: { name: data[4]?.soup || "—", price: "" }, meals: [ { name: data[4]?.m1 || "—", price: data[4]?.p1 ? `${data[4].p1} Kč` : "" }, { name: data[4]?.m2 || "—", price: data[4]?.p2 ? `${data[4].p2} Kč` : "" } ] },
-          { day: "Pátek",   date: getDateForDay(5), isToday: todayNum === 5, soup: { name: data[5]?.soup || "—", price: "" }, meals: [ { name: data[5]?.m1 || "—", price: data[5]?.p1 ? `${data[5].p1} Kč` : "" }, { name: data[5]?.m2 || "—", price: data[5]?.p2 ? `${data[5].p2} Kč` : "" } ] },
-          { day: "Sobota",  date: getDateForDay(6), isToday: todayNum === 6, soup: { name: data[6]?.soup || "—", price: "" }, meals: [ { name: data[6]?.m1 || "—", price: data[6]?.p1 ? `${data[6].p1} Kč` : "" }, { name: data[6]?.m2 || "—", price: data[6]?.p2 ? `${data[6].p2} Kč` : "" } ] },
+          { day: "Pondělí",  date: getDateForDay(1), isToday: todayNum === 1, soup: { name: data[1]?.soup || "—", price: "" }, meals: buildMeals(data[1], false) },
+          { day: "Úterý",   date: getDateForDay(2), isToday: todayNum === 2, soup: { name: data[2]?.soup || "—", price: "" }, meals: buildMeals(data[2], false) },
+          { day: "Středa",  date: getDateForDay(3), isToday: todayNum === 3, soup: { name: data[3]?.soup || "—", price: "" }, meals: buildMeals(data[3], true) },
+          { day: "Čtvrtek", date: getDateForDay(4), isToday: todayNum === 4, soup: { name: data[4]?.soup || "—", price: "" }, meals: buildMeals(data[4], false) },
+          { day: "Pátek",   date: getDateForDay(5), isToday: todayNum === 5, soup: { name: data[5]?.soup || "—", price: "" }, meals: buildMeals(data[5], false) },
+          { day: "Sobota",  date: getDateForDay(6), isToday: todayNum === 6, soup: { name: data[6]?.soup || "—", price: "" }, meals: buildMeals(data[6], false) },
         ]);
       } catch (e) {
         console.error("Chyba při načítání menu:", e);
@@ -208,13 +216,13 @@ export function WeeklyMenuPage() {
 
         {/* Desktop Menu Display */}
         <div className="hidden lg:block">
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-6 items-stretch">
             {weeklyMenu.map((menu, index) => (
               <motion.div
                 key={index}
                 {...fadeInUp}
                 transition={{ delay: index * 0.1 }}
-                className={`bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow ${
+                className={`bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex flex-col ${
                   menu.isToday ? "ring-2 ring-[#B8860B]" : ""
                 }`}
               >
