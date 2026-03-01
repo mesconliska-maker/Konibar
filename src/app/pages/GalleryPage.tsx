@@ -7,76 +7,11 @@ export function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const galleryImages = [
-    {
-      url: "https://images.unsplash.com/photo-1761095596755-99ba58997720?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnb3VybWV0JTIwZm9vZCUyMHBsYXRpbmclMjBwcmVzZW50YXRpb258ZW58MXx8fHwxNzcyMTE2MzYxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Gourmet jídlo",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1768051297578-1ea70392c307?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwcmVzdGF1cmFudCUyMGludGVyaW9yJTIwd2FybSUyMGxpZ2h0aW5nfGVufDF8fHx8MTc3MjA3MzY3NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Interiér restaurace",
-      category: "interior"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1678684279246-96e6afb970f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmlsbGVkJTIwc3RlYWslMjBkaW5uZXIlMjBwbGF0ZXxlbnwxfHx8fDE3NzIwNjcwMjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Grilovaný steak",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1754799565126-fe1ad148db85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMHBpenphJTIwaXRhbGlhbiUyMGN1aXNpbmV8ZW58MXx8fHwxNzcyMTE2MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Čerstvá pizza",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1743793055911-52e19beba5d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwZGluaW5nJTIwcm9vbSUyMGF0bW9zcGhlcmV8ZW58MXx8fHwxNzcyMTE2MzY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Jídelna restaurace",
-      category: "interior"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1761315413256-e149b40f577b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXJnZXIlMjBnb3VybWV0JTIwZm9vZCUyMHBob3RvZ3JhcGh5fGVufDF8fHx8MTc3MjEwOTE5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Gourmet burger",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1564093497595-593b96d80180?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMHNhbGFkJTIwYm93bCUyMGhlYWx0aHl8ZW58MXx8fHwxNzcyMDA2NDY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Čerstvý salát",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1764015939108-7963106fa73b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb3VwJTIwYm93bCUyMGNvbWZvcnQlMjBmb29kfGVufDF8fHx8MTc3MjA1MTMyMHww&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Polévka",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1590060846796-0418842f3908?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwcGFzdGElMjBkaXNoJTIwY2xvc2V1cHxlbnwxfHx8fDE3NzIxMTY1ODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Pasta",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1741965134280-9094486efd82?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwZGVzc2VydCUyMHBsYXRpbmd8ZW58MXx8fHwxNzcyMTE2NTkwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Dezert",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1771325788983-37461c7c2258?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5lJTIwZGluaW5nJTIwYXBwZXRpemVyfGVufDF8fHx8MTc3MjAxNzQ2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Předkrm",
-      category: "food"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1673968872147-30bcd4bea38b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwYmFyJTIwY29ja3RhaWxzfGVufDF8fHx8MTc3MjAzNzY0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Bar a nápoje",
-      category: "interior"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1770232230192-4ee3d0dbf43c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3p5JTIwcmVzdGF1cmFudCUyMHNlYXRpbmd8ZW58MXx8fHwxNzcyMTE2NTkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Útulné posezení",
-      category: "interior"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1695606452803-6708a37d3836?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZWFmb29kJTIwcGxhdHRlciUyMHByZXNlbnRhdGlvbnxlbnwxfHx8fDE3NzIxMTY1OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      alt: "Mořské plody",
-      category: "food"
-    },
+    { url: "/obrazek5.jpeg", alt: "Restaurace Konibar", category: "interior" },
+    { url: "/obrazek6.jpeg", alt: "Restaurace Konibar", category: "interior" },
+    { url: "/obrazek7.jpeg", alt: "Restaurace Konibar", category: "food" },
+    { url: "/obrazek8.jpeg", alt: "Restaurace Konibar", category: "food" },
+    { url: "/obrazek9.jpeg", alt: "Restaurace Konibar", category: "food" },
   ];
 
   const fadeInUp = {
@@ -144,10 +79,10 @@ export function GalleryPage() {
               Rezervovat stůl
             </a>
             <a
-              href="tel:+420775941501"
+              href="tel:+420374790133"
               className="bg-[#2C2416] text-white px-8 py-3 rounded-md hover:bg-[#1A1510] transition-colors"
             >
-              Zavolat: +420 775 941 501
+              Zavolat: +420 374 790 133
             </a>
           </div>
         </motion.div>
