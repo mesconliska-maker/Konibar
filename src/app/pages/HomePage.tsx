@@ -31,9 +31,9 @@ export function HomePage() {
   const [todaysMenu, setTodaysMenu] = useState<MenuItem[]>([]);
   const [todayLabel, setTodayLabel] = useState("");
   const reviews = [
-  { name: "Jana Nováková", rating: 5, text: "Vynikající jídlo a milá obsluha." },
-  { name: "Petr Svoboda", rating: 4, text: "Skvělá restaurace." },
-  { name: "Marie Dvořáková", rating: 4, text: "Pravidelně objednáváme." },
+  { name: "Michal Popek", rating: 5, text: "Velice přijemná restaurace s milou obsluhou, dobrým jídlem a skvělýma cenama. Umístění na náměstí je příhodné, parkovací místa přímo před restaurací. Doporučuji k navštívení. Poměr cena kvalita skvělá." },
+  { name: "Michaela Dobová", rating: 5, text: "Obsluha laskavá, jídlo výborné a ceny přijatelné! Určitě návštěvu zopakujeme" },
+  { name: "Jirka Templ", rating: 5, text: "Dobré jídlo,příjemná obsluha a divná limonáda. Chce to jí ochutnat😂.Přeji hezký den." },
 ];
 
 const galleryImages = [
