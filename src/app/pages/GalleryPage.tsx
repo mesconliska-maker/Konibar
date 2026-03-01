@@ -144,10 +144,10 @@ export function GalleryPage() {
               Rezervovat stůl
             </a>
             <a
-              href="tel:+420374790133"
+              href="tel:+420775941501"
               className="bg-[#2C2416] text-white px-8 py-3 rounded-md hover:bg-[#1A1510] transition-colors"
             >
-              Zavolat: +420 374 790 133
+              Zavolat: +420 775 941 501
             </a>
           </div>
         </motion.div>
