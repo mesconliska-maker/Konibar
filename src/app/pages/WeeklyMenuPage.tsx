@@ -1,73 +1,89 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Calendar, ChefHat } from "lucide-react";
 
-export function WeeklyMenuPage() {
-  const [selectedDay, setSelectedDay] = useState(4); // Thursday = index 4
+type DayMenu = {
+  day: string;
+  date: string;
+  isToday?: boolean;
+  soup: { name: string; price: string };
+  meals: { name: string; price: string }[];
+};
 
-  const weeklyMenu = [
-    {
-      day: "Pondělí",
-      date: "22.2.",
-      soup: { name: "Česnečka s krutony", price: "45 Kč" },
-      meals: [
-        { name: "Svíčková na smetaně, knedlík", price: "155 Kč" },
-        { name: "Kuřecí prsa na žampionech, rýže", price: "145 Kč" },
-        { name: "Smažený sýr, brambor, tatarka", price: "125 Kč" },
-      ],
-    },
-    {
-      day: "Úterý",
-      date: "23.2.",
-      soup: { name: "Gulášová polévka", price: "45 Kč" },
-      meals: [
-        { name: "Vepřový řízek, bramborový salát", price: "145 Kč" },
-        { name: "Kuřecí kung-pao, rýže", price: "135 Kč" },
-        { name: "Špagety carbonara", price: "125 Kč" },
-      ],
-    },
-    {
-      day: "Středa",
-      date: "24.2.",
-      soup: { name: "Zelňačka", price: "45 Kč" },
-      meals: [
-        { name: "Moravský vrabec, zelí, knedlík", price: "165 Kč" },
-        { name: "Losos na másle, bramborová kaše", price: "175 Kč" },
-        { name: "Grilovaná zelenina s fetou", price: "115 Kč" },
-      ],
-    },
-    {
-      day: "Čtvrtek",
-      date: "25.2.",
-      isToday: true,
-      soup: { name: "Hovězí vývar s nudlemi", price: "45 Kč" },
-      meals: [
-        { name: "Vepřová pečeně, knedlík, zelí", price: "145 Kč" },
-        { name: "Kuřecí řízek, bramborová kaše", price: "135 Kč" },
-        { name: "Lasagne bolognese", price: "135 Kč" },
-      ],
-    },
-    {
-      day: "Pátek",
-      date: "26.2.",
-      soup: { name: "Rybí polévka", price: "50 Kč" },
-      meals: [
-        { name: "Smažený kapr, bramborový salát", price: "155 Kč" },
-        { name: "Kuřecí gyros, hranolky, zelenina", price: "145 Kč" },
-        { name: "Rizoto s mořskými plody", price: "165 Kč" },
-      ],
-    },
-    {
-      day: "Sobota",
-      date: "27.2.",
-      soup: { name: "Polévka dle denní nabídky", price: "45 Kč" },
-      meals: [
-        { name: "Menu 1 dle denní nabídky", price: "—" },
-        { name: "Menu 2 dle denní nabídky", price: "—" },
-        { name: "Menu 3 dle denní nabídky", price: "—" },
-      ],
-    },
-  ];
+const DAY_NAMES = ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"];
+
+// Vrátí datum pro daný den v aktuálním týdnu (1=Po, 2=Út, ..., 6=So)
+function getDateForDay(dayIndex: number): string {
+  const today = new Date();
+  const currentDay = today.getDay(); // 0=Ne, 1=Po, ...
+  const mondayOffset = currentDay === 0 ? -6 : 1 - currentDay;
+  const monday = new Date(today);
+  monday.setDate(today.getDate() + mondayOffset);
+  const target = new Date(monday);
+  target.setDate(monday.getDate() + (dayIndex - 1)); // dayIndex: 1=Po...6=So
+  return `${target.getDate()}.${target.getMonth() + 1}.`;
+}
+
+const SHEETS_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRHDAe_aQ0-REXRoXqjvW89z1geWJFK_M40BBvPe2u68tmWDcUBkcu7jb3lTwrmMXxKHtkEiKCSOeI7/pub?output=csv";
+
+export function WeeklyMenuPage() {
+  const todayJs = new Date().getDay(); // 0=Ne,1=Po,...,6=So
+  // Převedeme na index v weeklyMenu (0=Po, 1=Út, ..., 4=Pá, 5=So)
+  const todayIndex = todayJs === 0 ? -1 : todayJs - 1; // -1 = neděle (mimo)
+
+  const [selectedDay, setSelectedDay] = useState(Math.max(0, Math.min(todayIndex, 5)));
+  const [weeklyMenu, setWeeklyMenu] = useState<DayMenu[]>([
+    { day: "Pondělí",  date: getDateForDay(1), meals: [], soup: { name: "Načítám...", price: "" } },
+    { day: "Úterý",   date: getDateForDay(2), meals: [], soup: { name: "Načítám...", price: "" } },
+    { day: "Středa",  date: getDateForDay(3), meals: [], soup: { name: "Načítám...", price: "" } },
+    { day: "Čtvrtek", date: getDateForDay(4), meals: [], soup: { name: "Načítám...", price: "" } },
+    { day: "Pátek",   date: getDateForDay(5), meals: [], soup: { name: "Načítám...", price: "" } },
+    { day: "Sobota",  date: getDateForDay(6), meals: [], soup: { name: "Načítám...", price: "" } },
+  ]);
+
+  useEffect(() => {
+    async function loadMenu() {
+      try {
+        const res = await fetch(SHEETS_URL);
+        const text = await res.text();
+        const rows = text.split("\n").slice(1);
+
+        // dayNumber z Sheets: 1=Po, 2=Út, 3=St, 4=Čt, 5=Pá, 6=So, 7=Ne
+        const data: Record<number, { soup: string; m1: string; p1: string; m2: string; p2: string }> = {};
+
+        rows.forEach((row) => {
+          if (!row.trim()) return;
+          const [day, soup, m1, p1, m2, p2] = row.split(",");
+          const d = Number(day);
+          if (d >= 1 && d <= 6) {
+            data[d] = { soup: soup?.trim(), m1: m1?.trim(), p1: p1?.trim(), m2: m2?.trim(), p2: p2?.trim() };
+          }
+        });
+
+        const todayNum = todayJs === 0 ? 7 : todayJs; // 1=Po...7=Ne
+
+        setWeeklyMenu([
+          { day: "Pondělí",  date: getDateForDay(1), isToday: todayNum === 1, soup: { name: data[1]?.soup || "—", price: "" }, meals: [ { name: data[1]?.m1 || "—", price: data[1]?.p1 ? `${data[1].p1} Kč` : "" }, { name: data[1]?.m2 || "—", price: data[1]?.p2 ? `${data[1].p2} Kč` : "" } ] },
+          { day: "Úterý",   date: getDateForDay(2), isToday: todayNum === 2, soup: { name: data[2]?.soup || "—", price: "" }, meals: [ { name: data[2]?.m1 || "—", price: data[2]?.p1 ? `${data[2].p1} Kč` : "" }, { name: data[2]?.m2 || "—", price: data[2]?.p2 ? `${data[2].p2} Kč` : "" } ] },
+          { day: "Středa",  date: getDateForDay(3), isToday: todayNum === 3, soup: { name: data[3]?.soup || "—", price: "" }, meals: [ { name: data[3]?.m1 || "—", price: data[3]?.p1 ? `${data[3].p1} Kč` : "" }, { name: data[3]?.m2 || "—", price: data[3]?.p2 ? `${data[3].p2} Kč` : "" } ] },
+          { day: "Čtvrtek", date: getDateForDay(4), isToday: todayNum === 4, soup: { name: data[4]?.soup || "—", price: "" }, meals: [ { name: data[4]?.m1 || "—", price: data[4]?.p1 ? `${data[4].p1} Kč` : "" }, { name: data[4]?.m2 || "—", price: data[4]?.p2 ? `${data[4].p2} Kč` : "" } ] },
+          { day: "Pátek",   date: getDateForDay(5), isToday: todayNum === 5, soup: { name: data[5]?.soup || "—", price: "" }, meals: [ { name: data[5]?.m1 || "—", price: data[5]?.p1 ? `${data[5].p1} Kč` : "" }, { name: data[5]?.m2 || "—", price: data[5]?.p2 ? `${data[5].p2} Kč` : "" } ] },
+          { day: "Sobota",  date: getDateForDay(6), isToday: todayNum === 6, soup: { name: data[6]?.soup || "—", price: "" }, meals: [ { name: data[6]?.m1 || "—", price: data[6]?.p1 ? `${data[6].p1} Kč` : "" }, { name: data[6]?.m2 || "—", price: data[6]?.p2 ? `${data[6].p2} Kč` : "" } ] },
+        ]);
+      } catch (e) {
+        console.error("Chyba při načítání menu:", e);
+      }
+    }
+
+    loadMenu();
+    const interval = setInterval(loadMenu, 300000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Datum pro hlavičku
+  const weekStart = getDateForDay(1);
+  const weekEnd = getDateForDay(6);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -92,7 +108,7 @@ export function WeeklyMenuPage() {
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-[#4A4238]">
             <Calendar size={20} />
-            <span>Týden 22. - 27. února 2026</span>
+            <span>{weekStart} – {weekEnd} {new Date().getFullYear()}</span>
           </div>
         </motion.div>
 
@@ -148,9 +164,6 @@ export function WeeklyMenuPage() {
                   <h3 className="text-lg text-[#2C2416] flex-1">
                     {weeklyMenu[selectedDay].soup.name}
                   </h3>
-                  <span className="text-xl text-[#B8860B] font-serif ml-4">
-                    {weeklyMenu[selectedDay].soup.price}
-                  </span>
                 </div>
               </div>
 
@@ -207,9 +220,6 @@ export function WeeklyMenuPage() {
                     <h3 className="text-sm text-[#2C2416] mb-2 leading-tight">
                       {menu.soup.name}
                     </h3>
-                    <span className="text-lg text-[#B8860B] font-serif">
-                      {menu.soup.price}
-                    </span>
                   </div>
 
                   {/* Meals */}
