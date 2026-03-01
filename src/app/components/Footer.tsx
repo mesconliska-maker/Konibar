@@ -98,8 +98,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#3E3228] mt-12 pt-8 text-center text-sm">
+        <div className="border-t border-[#3E3228] mt-12 pt-8 text-sm flex justify-between items-center">
           <p>&copy; 2026 Restaurace Konibar. Všechna práva vyhrazena.</p>
+          <a href="https://www.comvio.cz" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8860B] transition-colors">
+            Vytvořeno v comvio.cz
+          </a>
         </div>
       </div>
     </footer>
