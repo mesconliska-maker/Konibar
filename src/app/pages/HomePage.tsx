@@ -314,7 +314,7 @@ const galleryImages = [
             <div className="flex items-center justify-center gap-2 text-[#B8860B]">
               <Star size={24} fill="currentColor" />
               <span className="text-3xl font-serif">4.2</span>
-              <span className="text-[#6B6254]">/ 5</span>
+              <span className="text-[#6B6254]">/ 748</span>
             </div>
           </motion.div>
 
