@@ -257,11 +257,11 @@ export function ContactPage() {
         {/* Quick Call Button - Mobile */}
         <motion.div {...fadeInUp} className="mt-8 lg:hidden">
           <a
-            href="tel:+420374790133"
+            href="tel:+420775941501"
             className="block w-full bg-[#B8860B] text-white px-6 py-4 rounded-md hover:bg-[#9A7109] transition-colors text-center flex items-center justify-center gap-2"
           >
             <Phone size={24} />
-            <span className="text-lg">Zavolat: +420 374 790 133</span>
+            <span className="text-lg">Zavolat: +420 775 941 501</span>
           </a>
         </motion.div>
       </div>
