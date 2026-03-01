@@ -86,10 +86,10 @@ export function ContactPage() {
                   <div>
                     <h3 className="text-xl text-[#2C2416] mb-2">Telefon</h3>
                     <a 
-                      href="tel:+420374790133" 
+                      href="tel:+420775941501" 
                       className="text-[#B8860B] hover:text-[#9A7109] transition-colors text-lg"
                     >
-                      +420 374 790 133
+                      +420 775 941 501
                     </a>
                     <p className="text-[#6B6254] text-sm mt-1">
                       Pro rezervace
