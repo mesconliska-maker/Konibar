@@ -363,11 +363,11 @@ const galleryImages = [
                 <ArrowRight size={20} />
               </Link>
               <a
-                href="tel:+420374790133"
+                href="tel:+420775941501"
                 className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-md hover:bg-white/20 transition-all inline-flex items-center gap-2"
               >
                 <Phone size={20} />
-                +420 374 790 133
+                +420 775 941 501
               </a>
             </div>
           </motion.div>
