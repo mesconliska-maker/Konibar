@@ -28,9 +28,11 @@ export function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl md:text-3xl font-serif text-[#2C2416]">
-              Restaurace <span className="text-[#B8860B]">Konibar</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="Restaurace Konibar"
+              className="h-14 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
