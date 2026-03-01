@@ -11,7 +11,7 @@ export function Footer() {
             <h3 className="text-xl text-[#B8860B] mb-4">Restaurace Konibar</h3>
             <p className="text-sm leading-relaxed mb-4">
               Tradiční česká kuchyně v srdci Boru u Tachova. Nabízíme denní menu, 
-              speciality i rozvoz jídel.
+              speciality.
             </p>
           </div>
 
