@@ -260,9 +260,9 @@ export function WeeklyMenuPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-xl text-[#2C2416] mb-2">Rozvoz</h3>
+              <h3 className="text-xl text-[#2C2416] mb-2">Rezervace</h3>
               <p className="text-[#6B6254]">
-                Dovezeme vám oběd zdarma při objednávce nad 200 Kč
+                Rezervujte si stůl online nebo telefonicky
               </p>
             </div>
           </div>
