@@ -104,10 +104,10 @@ export function ContactPage() {
                   <div>
                     <h3 className="text-xl text-[#2C2416] mb-2">Email</h3>
                     <a 
-                      href="mailto:info@konibar.cz" 
+                      href="mailto:restauracekonibar@seznam.cz" 
                       className="text-[#B8860B] hover:text-[#9A7109] transition-colors"
                     >
-                      info@konibar.cz
+                      restauracekonibar@seznam.cz
                     </a>
                   </div>
                 </div>
