@@ -80,8 +80,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={18} className="text-[#B8860B] flex-shrink-0" />
-                <a href="mailto:info@konibar.cz" className="hover:text-[#B8860B] transition-colors">
-                  info@konibar.cz
+                <a href="mailto:restauracekonibar@seznam.cz" className="hover:text-[#B8860B] transition-colors">
+                  restauracekonibar@seznam.cz
                 </a>
               </li>
             </ul>
