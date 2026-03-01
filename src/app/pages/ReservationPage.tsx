@@ -84,8 +84,8 @@ export function ReservationPage() {
                 </a>
                 <p className="text-[#6B6254]">
                   V případě dotazů nás kontaktujte na{" "}
-                  <a href="tel:+420374790133" className="text-[#B8860B] hover:text-[#9A7109]">
-                    +420 374 790 133
+                  <a href="tel:+420775941501" className="text-[#B8860B] hover:text-[#9A7109]">
+                    +420 775 941 501
                   </a>
                 </p>
               </div>
