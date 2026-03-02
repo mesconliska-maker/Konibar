@@ -221,7 +221,7 @@ const galleryImages = [
             <p className="text-lg text-[#4A4238] leading-relaxed mb-4">
               Jsme rodinná restaurace s tradicí, která se nachází v centru města Bor u Tachova. 
               Nabízíme každý den čerstvě připravené menu, široký výběr jídel z našeho stálého 
-              jídelního lístku a také možnost rozvozu jídel.
+              jídelního lístku.
             </p>
             <p className="text-lg text-[#4A4238] leading-relaxed">
               Naše kuchyně kombinuje tradiční české recepty s moderními technologiemi přípravy, 
