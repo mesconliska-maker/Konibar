@@ -436,8 +436,8 @@ const galleryImages = [
                   </div>
                   <div>
                     <h3 className="text-xl text-[#2C2416] mb-1">Telefon</h3>
-                    <a href="tel:+420374790133" className="text-[#B8860B] hover:text-[#9A7109]">
-                      +420 374 790 133
+                    <a href="tel:+420775941501" className="text-[#B8860B] hover:text-[#9A7109]">
+                      +420 775 941 501
                     </a>
                   </div>
                 </div>
