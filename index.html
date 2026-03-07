@@ -3,8 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Restaurace Konibar</title>
+
+    <!-- Základní SEO -->
+    <title>Restaurace Konibar | Bor u Tachova</title>
+    <meta name="description" content="Restaurace Konibar v Boru u Tachova. Denní menu, pizza, česká kuchyně. Otevřeno každý den. Rezervace online nebo telefonicky." />
+    <meta name="keywords" content="restaurace Bor u Tachova, Konibar, denní menu, pizza, česká kuchyně, oběd Bor, restaurace Tachov" />
+    <meta name="author" content="Restaurace Konibar" />
+    <link rel="canonical" href="https://www.konibar.cz/" />
+
+    <!-- Open Graph (Facebook, sdílení) -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:title" content="Restaurace Konibar | Bor u Tachova" />
+    <meta property="og:description" content="Denní menu, pizza a česká kuchyně v centru Boru u Tachova. Rezervujte si stůl online." />
+    <meta property="og:url" content="https://www.konibar.cz/" />
+    <meta property="og:image" content="https://www.konibar.cz/obrazek1hl.jpeg" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="Restaurace Konibar" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Strukturovaná data pro Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Restaurace Konibar",
+      "url": "https://www.konibar.cz",
+      "logo": "https://www.konibar.cz/logo.png",
+      "image": "https://www.konibar.cz/obrazek1hl.jpeg",
+      "description": "Rodinná restaurace s denním menu, pizzou a českou kuchyní v centru Boru u Tachova.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "nám. Republiky 286",
+        "addressLocality": "Bor u Tachova",
+        "postalCode": "348 02",
+        "addressCountry": "CZ"
+      },
+      "telephone": "+420775941501",
+      "servesCuisine": ["Česká kuchyně", "Pizza"],
+      "priceRange": "$$",
+      "openingHours": ["Mo-Fr 10:00-21:00", "Sa 10:00-21:00"],
+      "sameAs": [
+        "https://www.facebook.com/restauracekonibar"
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
