@@ -182,7 +182,7 @@ const galleryImages = [
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
 
           {todaysMenu.length === 0 && (
             <p className="text-center">Načítám menu...</p>
@@ -192,7 +192,7 @@ const galleryImages = [
             <motion.div
               key={index}
               {...fadeInUp}
-              className="flex justify-between py-6 border-b"
+              className="flex justify-between items-start gap-4 py-6 border-b"
             >
               <div>
                 <span className="text-sm text-[#B8860B] uppercase">
@@ -203,7 +203,7 @@ const galleryImages = [
                 </h3>
               </div>
 
-              <div className="text-2xl text-[#B8860B]">
+              <div className="text-2xl text-[#B8860B] shrink-0">
                 {item.price}
               </div>
             </motion.div>
@@ -458,7 +458,7 @@ const galleryImages = [
               className="h-[400px] rounded-lg overflow-hidden shadow-lg"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2576.9!2d12.7733!3d49.7511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDQ1JzA0LjAiTiAxMsKwNDYnMjMuOSJF!5e0!3m2!1sen!2scz!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1324494.6447854624!2d12.57056883299909!3d49.58070727471981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a075f7a123360f%3A0x7aba73a95b6e211e!2sRestaurace%20Konibar!5e0!3m2!1scs!2scz!4v1772881690594!5m2!1scs!2scz"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
